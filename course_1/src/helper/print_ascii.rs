@@ -7,14 +7,13 @@ pub fn print_ascii_by_while(start: char,end: char){
     let end_dec: u8 = end as u8;
     println!("打印{}({})到{}({})之间的字符！",start,start_dec,end,end_dec);
     
+    let mut a = start_dec;
     if start_dec >= end_dec {
-        let mut a = start_dec;
         while a >= end_dec  {
             println!("{}",a as char);
             a = a - 1;
         }
     } else {
-        let mut a = start_dec;
         while a <= end_dec  {
             println!("{}",a as char);
             a = a + 1;
