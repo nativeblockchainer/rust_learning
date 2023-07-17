@@ -1,29 +1,47 @@
 use std::collections::{HashMap, HashSet};
 
+/**
+ * 学生结构体
+ */
 #[derive(Debug,Clone)]
 pub struct Student {
-    pub id: u32,
-    pub name: String,
-    pub class_name: String,
-    pub courses: HashSet<String>,
+    pub id: u64,//ID
+    pub name: String,//姓名
+    pub age: u8,//年龄
+    pub class: Class,//所在班级
+    pub courses: HashSet<Course>,//选择的课程
+    pub communities: HashSet<Community>,//加入的社团
 }
 
+/**
+ * 班级结构体
+ */
 #[derive(Debug,Clone)]
 pub struct Class {
-    pub name: String,
-    pub students: Vec<u32>,
+    pub name: String,//班级名称
+    pub students: Vec<u64>,//班级的学生id
 }
 
+/**
+ * 课程结构体
+ */
 #[derive(Debug,Clone)]
 pub struct Course {
-    pub name: String,
-    pub students: HashSet<u32>,
+    pub name: String,//课程的名称
+    pub students: HashSet<u64>,//选择课程的学生id
 }
 
+/**
+ * 社团元组结构体
+ */
+#[derive(Debug,Clone)]
+pub struct Community(String,HashSet<u64>);
+
 pub struct StudentManagementSystem {
-    pub students: HashMap<u32, Student>,
+    pub students: HashMap<u64, Student>,
     pub classes: HashMap<String, Class>,
     pub courses: HashMap<String, Course>,
+    pub communities: HashMap<String,Community>,
 }
 
 impl StudentManagementSystem {
@@ -32,6 +50,7 @@ impl StudentManagementSystem {
             students: HashMap::new(),
             classes: HashMap::new(),
             courses: HashMap::new(),
+            communities: HashMap::new(),
         }
     }
 
@@ -41,12 +60,12 @@ impl StudentManagementSystem {
     }
 
     // 获取学生信息
-    pub fn get_student(&self, id: u32) -> Option<&Student> {
+    pub fn get_student(&self, id: u64) -> Option<&Student> {
         self.students.get(&id)
     }
 
     // 删除学生
-    pub fn delete_student(&mut self, id: u32) -> Option<Student> {
+    pub fn delete_student(&mut self, id: u64) -> Option<Student> {
         self.students.remove(&id)
     }
 
@@ -62,6 +81,9 @@ impl StudentManagementSystem {
 
     // 删除班级
     pub fn delete_class(&mut self, name: &str) -> Option<Class> {
+        let if Option(c: &Class) = self.classes.get(name){
+            
+        }
         self.classes.remove(name)
     }
 

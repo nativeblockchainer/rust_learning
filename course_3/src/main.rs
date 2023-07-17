@@ -4,9 +4,9 @@ pub use student_manage_sys::{Student,Course,Class,StudentManagementSystem};
 use std::collections::HashSet;
 
 fn main() {
-    let mut sms = StudentManagementSystem::new();
+    let mut sms: StudentManagementSystem = StudentManagementSystem::new();
 
-    let student1 = Student {
+    let student1: Student = Student {
         id: 1,
         name: "Alice".to_string(),
         class_name: "Class A".to_string(),
@@ -20,9 +20,6 @@ fn main() {
         courses: HashSet::new(),
     };
 
-    sms.add_student(student1.clone());
-    sms.add_student(student2.clone());
-
     let class1 = Class {
         name: student1.class_name.clone(),
         students: vec![student1.id],
@@ -33,9 +30,6 @@ fn main() {
         students: vec![student2.id],
     };
 
-    sms.add_class(class1);
-    sms.add_class(class2);
-
     let course1 = Course {
         name: "Math".to_string(),
         students: HashSet::new(),
@@ -45,6 +39,12 @@ fn main() {
         name: "English".to_string(),
         students: HashSet::new(),
     };
+
+    sms.add_student(student1);
+    sms.add_student(student2);
+
+    sms.add_class(class1);
+    sms.add_class(class2);
 
     sms.add_course(course1.clone());
     sms.add_course(course2.clone());
